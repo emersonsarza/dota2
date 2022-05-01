@@ -4,7 +4,7 @@ import AgiLogo from '../../assets/img/filter-agi.png';
 import IntLogo from '../../assets/img/filter-int.png';
 import StrLogo from '../../assets/img/filter-str.png';
 
-import { Filter } from './Heroes.styles';
+import { Filter, FilterContainer } from './Heroes.styles';
 import { useHero } from './HeroesContext';
 
 const FilterHeroes = () => {

@@ -1,15 +1,34 @@
+import { css } from 'styled-components';
 import { createStyleWithClassName } from '../../utils/styles';
+
+const opacityAnim = css`
+  animation: appear 2s ease-in-out;
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
 
 export const Title = createStyleWithClassName(
   'h1',
   'text-3xl md:text-5xl font-bold text-center tracking-wider uppercase mt-8'
 )`
+  ${opacityAnim}
 `;
 
 export const Description = createStyleWithClassName(
   'p',
   'text-sm md:text-2xl text-center mt-5'
-)``;
+)`
+  ${opacityAnim}
+`;
 
 export const Filter = createStyleWithClassName(
   'div',
@@ -28,6 +47,22 @@ export const Filter = createStyleWithClassName(
     ${({ theme }) => theme.filterBg[1]} 30%, 
     ${({ theme }) => theme.filterBg[2]} 100%
   );
+  
+  animation: apper-from-right 2s ease-in-out;
+  @keyframes apper-from-right {
+    0% {
+      opacity: 0.0;
+    }
+    20% {
+      opacity: 0.0;
+    }
+    80% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const HeroListContainer = createStyleWithClassName(
@@ -57,4 +92,5 @@ export const EmptyState = createStyleWithClassName(
   'flex items-center text-3xl md:text-3xl font-bold justify-center tracking-wider uppercase mt-8'
 )`
   min-height: 150px;
+  ${opacityAnim}
 `;
