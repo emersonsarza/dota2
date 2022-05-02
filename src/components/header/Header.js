@@ -11,7 +11,9 @@ const Header = () => {
 
   return (
     <Container>
-      <Logo />
+      <a href='https://www.dota2.com/' target='_blank' rel='noreferrer'>
+        <Logo />
+      </a>
       <span
         className='cursor-pointer opacity-80 hover:opacity-100'
         onClick={toggleTheme}
