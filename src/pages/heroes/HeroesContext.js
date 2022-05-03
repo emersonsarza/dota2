@@ -35,16 +35,18 @@ const HeroesProvider = ({ children }) => {
 
   const filterHeroes = useCallback(
     debounce((value) => {
+      const heroes = attr
+        ? heroFilteredByAttrRef.current[attr]
+        : heroesRef.current;
       if (value) {
         setHeroes(
-          heroesRef.current.filter(({ localized_name }) =>
+          heroes.filter(({ localized_name }) =>
             localized_name.toLowerCase().includes(value.toLowerCase())
           )
         );
       } else {
-        setHeroes(heroesRef.current);
+        setHeroes(heroes);
       }
-      selectAttr(null);
     }, 300),
     []
   );
