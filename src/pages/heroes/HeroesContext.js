@@ -48,7 +48,7 @@ const HeroesProvider = ({ children }) => {
         setHeroes(heroes);
       }
     }, 300),
-    []
+    [attr]
   );
 
   const onChangeSearchValue = useCallback(
