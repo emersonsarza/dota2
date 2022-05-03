@@ -4,20 +4,12 @@ import AgiLogo from '../../assets/img/filter-agi.png';
 import IntLogo from '../../assets/img/filter-int.png';
 import StrLogo from '../../assets/img/filter-str.png';
 
-import { Filter, FilterContainer } from './Heroes.styles';
+import { Filter } from './Heroes.styles';
 import { useHero } from './HeroesContext';
 
 const FilterHeroes = () => {
   const { attr, filterHeroesByAttr, searchValue, onChangeSearchValue } =
     useHero();
-
-  const onFilterByAttr = (attribute) => () => {
-    if (attr && attribute === attr) {
-      filterHeroesByAttr('');
-    } else {
-      filterHeroesByAttr(attribute);
-    }
-  };
 
   return (
     <Filter>
@@ -27,7 +19,7 @@ const FilterHeroes = () => {
           <span>Attribute</span>
           <span className='flex ml-4'>
             <img
-              onClick={onFilterByAttr('str')}
+              onClick={() => filterHeroesByAttr('str')}
               className={`cursor-pointer ${
                 attr === 'str' ? 'opacity-100 translate-y-0.5' : 'opacity-70'
               } hover:opacity-100 hover:drop-shadow`}
@@ -35,7 +27,7 @@ const FilterHeroes = () => {
               alt='str'
             />
             <img
-              onClick={onFilterByAttr('agi')}
+              onClick={() => filterHeroesByAttr('agi')}
               className={`cursor-pointer ${
                 attr === 'agi' ? 'opacity-100 translate-y-0.5' : 'opacity-70'
               } hover:opacity-100 hover:drop-shadow`}
@@ -43,7 +35,7 @@ const FilterHeroes = () => {
               alt='agi'
             />
             <img
-              onClick={onFilterByAttr('int')}
+              onClick={() => filterHeroesByAttr('int')}
               className={`cursor-pointer ${
                 attr === 'int' ? 'opacity-100 translate-y-0.5' : 'opacity-70'
               } hover:opacity-100 hover:drop-shadow`}

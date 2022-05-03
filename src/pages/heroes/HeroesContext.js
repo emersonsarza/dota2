@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useReducer,
   useRef,
   useState,
 } from 'react';
@@ -22,7 +23,15 @@ const HeroesProvider = ({ children }) => {
   const heroFilteredByAttrRef = useRef();
   const [heroes, setHeroes] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [attr, setAttr] = useState('');
+
+  const [attr, selectAttr] = useReducer((state, value) => {
+    if (state === value) {
+      setHeroes(heroesRef.current);
+      return null;
+    }
+    setHeroes(heroFilteredByAttrRef.current[value]);
+    return value;
+  }, null);
 
   const filterHeroes = useCallback(
     debounce((value) => {
@@ -35,7 +44,7 @@ const HeroesProvider = ({ children }) => {
       } else {
         setHeroes(heroesRef.current);
       }
-      setAttr('');
+      selectAttr(null);
     }, 300),
     []
   );
@@ -49,12 +58,7 @@ const HeroesProvider = ({ children }) => {
   );
 
   const filterHeroesByAttr = useCallback((attr) => {
-    setAttr(attr);
-    if (attr) {
-      setHeroes(heroFilteredByAttrRef.current[attr]);
-    } else {
-      setHeroes(heroesRef.current);
-    }
+    selectAttr(attr);
     setSearchValue('');
   }, []);
 
